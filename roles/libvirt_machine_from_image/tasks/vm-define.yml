@@ -8,7 +8,7 @@
 - name: Define vm from xml and set autostart
   community.libvirt.virt:
     command: define
-    xml: "{{ config_xml }}"
+    xml: "{{ vm_config_xml }}"
     # can't use this lookup, file is not on local machine. 
     #xml: "{{ lookup('file', '~/libvirt/' + fqdn + '.xml') }}"
 

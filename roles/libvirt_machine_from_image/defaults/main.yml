@@ -23,17 +23,18 @@ base_image_sha: b9b621b26725ba95442d9a56cbaa054784e0779a9522ec6eafff07c6e6f717ea
 image_from_base: false
 
 image_from_template: true
-osinfo: rhel6.10
-image_template: "{{ libvirt_pool_dir }}/template-{{ osinfo }}.qcow2"
-image_new: "{{ libvirt_pool_dir }}/{{ fqdn }}.qcow2"
+# osinfo: rhel6.10
+osinfo: rhel7.9
+# image_template: "{{ libvirt_pool_dir }}/template-{{ osinfo }}.qcow2"
+# image_new: "{{ libvirt_pool_dir }}/{{ fqdn }}.qcow2"
 
 # domain config
 
-config_from_hypervisor: false
-config_remote_file: "{{ '~/libvirt/' + fqdn + '.xml' }}"
+vm_config_from_hypervisor: false
+vm_config_remote_file: "{{ '~/libvirt/' + fqdn + '.xml' }}"
 
-config_from_template: true
-config_template: rhel-6-from-cockpit.xml
+vm_config_from_template: true
+# vm_config_template: "{{ osinfo }}.xml"
 
 # machine
 
@@ -46,5 +47,4 @@ vm_mac_address: 52:54:00:25:00:99
 # OS
 
 vm_root_pass: test123
-cleanup_tmp: true
-ssh_key: /root/.ssh/id_rsa.pub
+ssh_public_key_file: /root/.ssh/id_rsa.pub

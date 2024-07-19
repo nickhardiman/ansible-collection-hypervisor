@@ -7,10 +7,9 @@
 # check
 # !!! If an instance is already running, skip this work.
 
-- name: "Display hosts"
+- name: "Build this host"
   ansible.builtin.debug:
-    verbosity: 1
-    var: hosts_to_build
+    msg: "FQDN: {{ fqdn }}, OS: {{ osinfo }}"
 
 - name: List running VMs
   community.libvirt.virt:
@@ -40,11 +39,11 @@
 
 - name: Copy VM config from the hypervisor
   ansible.builtin.include_tasks: config-from-remote-file.yml
-  when: config_from_hypervisor
+  when: vm_config_from_hypervisor
 
 - name: Copy VM config from Jinja2 template file
   ansible.builtin.include_tasks: config-from-template.yml
-  when: config_from_template
+  when: vm_config_from_template
 
 
 - name: Create a new VM
