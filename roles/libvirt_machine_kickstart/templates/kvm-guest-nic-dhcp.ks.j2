@@ -37,6 +37,10 @@ eula --agreed
 # from the Ansible vault
 # These commands set up password-based login.
 # for key-based login, check out 'sshkey --username=user "ssh_key"'.
+# For changing a password in the "post" section, try one of these.
+#   echo "ansible_user:Password;1" | chpasswd
+#   echo "Password;1" | passwd --stdin ansible_user
+#
 rootpw                                       --iscrypted "{{ user_root_password_encrypted }}"
 user --groups=wheel --name={{ user_admin_name }}   --password="{{ user_admin_password_encrypted }}" --iscrypted --gecos="{{ user_admin_name }}"
 user --groups=wheel --name={{ user_ansible_name }} --password="{{ user_ansible_password_encrypted }}" --iscrypted --gecos="{{ user_ansible_name }}"
